@@ -5,13 +5,14 @@ import org.xml.sax.SAXException;
 import org.xml.sax.InputSource;
 import org.xml.sax.helpers.DefaultHandler;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /** Lookup a Shows Details on TV Rage
   * 
-  * @author stylesuxx
+  * @author stylesuxx 
   * @version 0.1
   *
   */
@@ -30,8 +31,8 @@ public class TVRageLookup{
   private int started = -1;
   private int showid = -1;
   private int runtime = -1;  
-  private Calendar startdate = null;
-  private Calendar ended = null;
+  private Calendar startdate = new GregorianCalendar();
+  private Calendar ended = new GregorianCalendar();
   private boolean validshow = false;
   private ArrayList<String> genres = new ArrayList<String>();
   
@@ -137,11 +138,11 @@ public class TVRageLookup{
 	    Xorigin_country = false;
 	  } 
 	  if( Xended ){
-	    ended = null; new String( ch, start, length );
+	    ended = Array2Date( new String( ch, start, length ).split("/") );
 	    Xended = false;
 	  } 
 	  if( Xstartdate ){
-	    startdate = null; new String( ch, start, length );
+	    startdate = Array2Date( new String( ch, start, length ).split("/") );
 	    Xstartdate = false;
 	  } 
 	  if( Xstarted ){
@@ -169,15 +170,36 @@ public class TVRageLookup{
     };
     //saxParser.parse("file.xml", handler);
     saxParser.parse( new InputSource(new URL("http://services.tvrage.com/feeds/showinfo.php?sid=" + showid).openStream()), handler);
-   //}catch(javax.xml.parsers.ParserConfigurationException e){System.out.println("Could not create Parser");}
- 
+   
    }catch( Exception e ){ 
       System.out.println("TV Rage Offline,..");
       //e.printStackTrace();
     }
-    //reader.setContentHandler(handler);
-    //reader.parse(new InputSource(new URL("http://services.tvrage.com/feeds/showinfo.php?sid=" + showid).openStream()));
-  }
+   }
+
+  private Calendar Array2Date(String[] dateA ){
+    Calendar tmp = new GregorianCalendar();
+    int month = -1;
+    int day = -1;
+    int year = -1;
+
+    if( dateA[0].equals("Jan") ) month = 1;
+    else if( dateA[0].equals("Feb") ) month = 2;
+    else if( dateA[0].equals("Mar") ) month = 3;
+    else if( dateA[0].equals("Apr") ) month = 4;
+    else if( dateA[0].equals("May") ) month = 5;
+    else if( dateA[0].equals("Jun") ) month = 6;
+    else if( dateA[0].equals("Jul") ) month = 7;
+    else if( dateA[0].equals("Aug") ) month = 8;
+    else if( dateA[0].equals("Sep") ) month = 9;
+    else if( dateA[0].equals("Oct") ) month = 10;
+    else if( dateA[0].equals("Nov") ) month = 11;
+    else if( dateA[0].equals("Dec") ) month = 12;
+    day = Integer.parseInt( dateA[1] );
+    year = Integer.parseInt( dateA[2] );
+    tmp.set( year, month, day );
+    return tmp;
+  } 
 
   
   /** Returns Showname
@@ -235,7 +257,7 @@ public class TVRageLookup{
   /** Returns Date when the show originally started
     * @return Calendar
     */
-  public Calendar getStartdate(){ return ended; }
+  public Calendar getStartdate(){ return startdate; }
   /** Returns Date when the show originally ended
     * @return Calendar
     */
