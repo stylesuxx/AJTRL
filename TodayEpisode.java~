@@ -1,3 +1,5 @@
+package ajtrl;
+
 import java.util.Calendar;
 /** This Object holds all Infos about a show in the Countdown XML
   * <ul>
