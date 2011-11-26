@@ -18,15 +18,15 @@ import java.util.Arrays;
   */
 
 public class TVRageLookup{
-  private String showname = null;
-  private String showlink = null;
-  private String origin_country = null;
-  private String status = null;
-  private String classification = null;
-  private String network = null;
-  private String airtime = null;
-  private String airday = null;
-  private String timezone = null;
+  private String showname = "init";
+  private String showlink = "init";
+  private String origin_country = "init";
+  private String status = "init";
+  private String classification = "init";
+  private String network = "init";
+  private String airtime = "init";
+  private String airday = "init";
+  private String timezone = "init";
   private int seasons = -1;
   private int started = -1;
   private int showid = -1;
@@ -69,11 +69,6 @@ public class TVRageLookup{
     *
     */
   public void lookup(){
-    getXml();
-  }
-  
-  // get the XML File for the Show
-  private  void getXml(){
     //XMLReader reader = XMLReaderFactory.createXMLReader();
     SAXParserFactory factory = SAXParserFactory.newInstance();
     try{
@@ -173,11 +168,12 @@ public class TVRageLookup{
    
    }catch( Exception e ){ 
       System.out.println("TV Rage Offline,..");
-      //e.printStackTrace();
+      e.printStackTrace();
     }
    }
 
   private Calendar Array2Date(String[] dateA ){
+    if ( dateA.length != 3 ) return null;
     Calendar tmp = new GregorianCalendar();
     int month = -1;
     int day = -1;
