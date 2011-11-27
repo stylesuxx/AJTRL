@@ -22,7 +22,6 @@ public class TodayEpisode{
   private String relativedate = null;
 
   /** Default Constructor
-    * @param showid ID of the show
     */
   public TodayEpisode(){}
 
@@ -120,7 +119,7 @@ public class TodayEpisode{
   }
 
   /** Returns the air date
-    * @param airdate The airdate of the episode
+    * @return Calendar
     */
   public Calendar getAirdate(){
     return airdate;

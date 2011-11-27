@@ -19,7 +19,7 @@ public class NextEpisodeEntity{
     * @param showID ID of the show 			- Show ID
     * @param next The next field of the show 		- Next Episode
     * @param showTitle Title of the show 		- Show Name
-    * @param daytime Day and Time field of the show 	- RFC3339
+    * @param dayTime Day and Time field of the show 	- RFC3339
     */
   public NextEpisodeEntity( int showID, String next, String showTitle, String dayTime ){
     this.showID = showID;
