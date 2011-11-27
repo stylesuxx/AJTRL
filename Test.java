@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 class Test{
   public static void main( String[] args ){
-    TVRageLookup himym = new TVRageLookup( 2930 );
+    TVRageLookup himym = new TVRageLookup( 8516 );
     himym.lookup();
     
     if( himym.isValidshow() ){
@@ -25,27 +25,7 @@ class Test{
       System.out.println( "Started: " + himym.getEnded().toString() );
     }
     else System.out.println("This is not a valid Show.");
-      
-    ArrayList<Integer> tmpA = new ArrayList<Integer>();
-    tmpA.add(22033);
-    tmpA.add(30042);
-    tmpA.add(8511);
 
-    TVRageCountdown cntdwn = new TVRageCountdown( tmpA, 8, "" );
-    ArrayList<TodayEpisode> tmp = cntdwn.getInfo();
-
-    for( int i = 0; i < tmp.size(); i++ ){
-      System.out.println( "ID: " + tmp.get(i).getShowid() );
-      System.out.println( "Name: " + tmp.get(i).getShowname() );
-      System.out.println( "Show Link: " + tmp.get(i).getShowlink() );
-      System.out.println( "Episode Link: " + tmp.get(i).getEpisodelink() );
-      System.out.println( "Episode Title: " + tmp.get(i).getEpisodetitle() );
-      System.out.println( "Epnum: " + tmp.get(i).getEpnum() );
-      System.out.println( "Relative Date: " + tmp.get(i).getRelativedate() );
-      System.out.println( "Air Date: " + tmp.get(i).getAirdate() );
-      
-      System.out.println( "-------------------------------" );
-    }
 
   }
 }
