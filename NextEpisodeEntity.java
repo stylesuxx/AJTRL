@@ -13,6 +13,7 @@ public class NextEpisodeEntity{
   private String showTitle = null;
   private String episodeTitle = null;
   private Calendar dateTime = null;
+  private int year, month, day, hour, minute;
 
   /** Default Constructor
     *
@@ -33,15 +34,14 @@ public class NextEpisodeEntity{
 
     // Split the dayTime and set the Calendar
     split = dayTime.split( "T" );
-    int year = Integer.parseInt( split[0].split( "-" )[0] );
-    int month = Integer.parseInt( split[0].split( "-" )[1] );
-    int day = Integer.parseInt( split[0].split( "-" )[2] );
+    year = Integer.parseInt( split[0].split( "-" )[0] );
+    month = Integer.parseInt( split[0].split( "-" )[1] );
+    day = Integer.parseInt( split[0].split( "-" )[2] );
 
-    int hour = Integer.parseInt( split[1].split( ":" )[0] );
-    int minute = Integer.parseInt( split[1].split( ":" )[1] );
+    hour = Integer.parseInt( split[1].split( ":" )[0] );
+    minute = Integer.parseInt( split[1].split( ":" )[1] );
 
-    dateTime = new GregorianCalendar();
-    dateTime.set( year, month, day, hour, minute );
+    dateTime = new GregorianCalendar( year, month, day, hour, minute );
   }
 
   /** Returns the shows ID
@@ -79,4 +79,8 @@ public class NextEpisodeEntity{
     * @return Calendar
     */
   public Calendar getDateTime(){ return dateTime; }
+
+  public String getStringDate(){
+    return day + "-" + month + "-" + year + "?" + hour + ":" + minute;
+  }
 }
